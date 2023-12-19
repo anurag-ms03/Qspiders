@@ -11,14 +11,14 @@ void seivePrime(int n){
         }
     }
     for(i=2;i<=n;i++){
-        if(Primes[i]==1)
-           printf("%d\t",i);
+        if(Primes[i] == 1 && Primes[i+6]==1)
+           printf("(%d\t%d)\n",i,i+6);
     }
 }
 int main()
 {
   int n;
-  printf("Enter the number upto which Prime Numbers are to be printed :\n");
+  printf("Enter the number upto which Sexy  Primes are to be printed :\n");
   scanf("%d",&n);
   seivePrime(n);
   return 0;
