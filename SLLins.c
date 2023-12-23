@@ -23,6 +23,7 @@ void push( struct Node **head_ref,int new_data){
          if((*head_ref)==NULL){
             (*head_ref)=new_node;
             new_node->next=NULL;
+            return;
          }
          else{
             new_node->next=(*head_ref);
@@ -64,13 +65,39 @@ void insertafter(struct Node **head_ref,int prev_data,int new_data){
              prev->next=new_node;
         }
 }
-
+void delete(struct Node **head_ref,int ele){
+  struct Node *temp = (*head_ref);
+  struct Node *prev = NULL;
+  if(*head_ref==NULL){
+    printf("List Empty");
+    return;
+  }
+  if((*head_ref)->data == ele){
+     (*head_ref)=temp->next;
+     free(temp);
+     return;
+  }
+  while(temp->next!=NULL){
+     if(temp->data == ele){
+          prev->next = temp->next;
+          free(temp);
+          return;
+      }
+        prev=temp;
+        temp=temp->next;
+  }
+}
 int main(){
     struct Node *head = NULL;
+    push(&head,20);
+    push(&head,30);
+    push(&head,40);
+    printList(&head);
     append(&head,100);
     printList(&head);
-    insertafter(&head,100,60);
+    insertafter(&head,40,60);
     printList(&head);
-    
+    delete(&head,60);
+    printList(&head);
     return 0;
 }
