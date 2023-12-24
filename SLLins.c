@@ -87,6 +87,39 @@ void delete(struct Node **head_ref,int ele){
         temp=temp->next;
   }
 }
+void swap(struct Node **head_ref,int ele1,int ele2){
+  struct Node *ptr1=(*head_ref);
+  struct Node *ptr2=(*head_ref);
+  struct Node *prev1=NULL;
+  struct Node *prev2=NULL;
+  if((*head_ref)==NULL){
+     printf("Empty list cannot swap");
+ }
+  while(ptr1->data!=ele1){
+       prev1=ptr1;
+       ptr1=ptr1->next;
+  }
+  if(prev1==NULL){
+
+  }
+  while(ptr2->data!=ele2){
+       prev2=ptr2;
+       ptr2=ptr2->next;
+  }
+  if(prev1==NULL){
+          prev1=ptr1->next;
+          prev2->next=ptr1;
+          ptr1->next=ptr2->next;
+          ptr2->next=prev1;
+          (*head_ref)=ptr2;
+  }
+  struct Node *temp=ptr2->next;
+  prev2->next=ptr1;
+  prev1->next=ptr2;
+  ptr2->next=ptr1->next;
+  ptr1->next=temp;
+  
+}
 int main(){
     struct Node *head = NULL;
     push(&head,20);
@@ -98,6 +131,10 @@ int main(){
     insertafter(&head,40,60);
     printList(&head);
     delete(&head,60);
+    printList(&head);
+    swap(&head,30,100);
+    printList(&head);
+    swap(&head,40,20);
     printList(&head);
     return 0;
 }
